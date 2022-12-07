@@ -19,32 +19,28 @@ public class baAi : MonoBehaviour
 
     public static bool onay;
 
+    public int score=0;
     // Start is called before the first frame update
     void Start()
     {
-        rb=GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(flyToEs){
-            esDirection=-(transform.position-es.transform.position).normalized;
-            rb.velocity= new Vector2 (esDirection.x , esDirection.y)* 5f*(Time.time/timeStamp);
+         int rand = Random.Range(0,2);
+        if (rand ==0){
+            this.GetComponent<Rigidbody2D> ().velocity=new Vector2 (-5f,0f);
 
         }
-        
-    }
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if(col.gameObject.name.Equals("PlayerMagnet")){
-            timeStamp=Time.time;
-            es=GameObject.Find("Player");
-            flyToEs=true;
-            onay=true;
+        else if (rand ==1){
+            this.GetComponent <Rigidbody2D> ().velocity = new Vector2 (5f, 0f);
+            
         }
     }
-    void OnTriggerExit2D(Collider2D col){
-        flyToEs=false;
+
+    private void Update(){
+        //var pos=transform.position;
+        //if(pos.x(GameObject.FindGameObjectWithTag("Ball"))==(pos.x(GameObject.FindGameObjectWithTag("goalpe"))=12.8f)){ 
+           // score++;
+       // }
+
     }
+    
+    
 }
